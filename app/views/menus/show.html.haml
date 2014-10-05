@@ -1,12 +1,13 @@
 %p#notice= notice
-
 %p
-  %b Title:
+  %strong Title:
   = @menu.title
 %p
-  %b Description:
+  %strong Description:
   = @menu.description
-
+- @menu.items.each do |i|
+  = i.name
+  = i.description
 = link_to 'Edit', edit_menu_path(@menu)
-\|
-= link_to 'Back', menus_path
+|
+\#{link_to 'Back', menus_path}
