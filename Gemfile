@@ -53,3 +53,4 @@ gem "cancan"
 gem "nested_form"
 gem 'carrierwave'
 gem "font-awesome-rails"
+gem "haml-rails"
