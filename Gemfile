@@ -49,7 +49,7 @@ gem 'time_difference'
 gem 'stripe'
 gem 'stripe_event'
 gem "rolify"
-gem "cancan"
+gem 'cancan'
 gem "nested_form"
 gem 'carrierwave'
 gem "font-awesome-rails"
