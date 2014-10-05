@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+plans = [
+  [ "Small", 1, 10, 20, 5, 10 ],
+  [ "Medium", 5, 50, 50, 10, 30 ],
+  [ "Large", 10, 100, 50, 50, 50 ]
+]
+
+plans.each do |name, restaurants, tables, menu_items, storage, price|
+  Plan.create( name: name, restaurants: restaurants, tables:tables, menu_items:menu_items, storage:storage, price:price )
+end
