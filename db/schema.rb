@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005233301) do
+ActiveRecord::Schema.define(version: 20141006002618) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20141005233301) do
   create_table "organizations", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "name"
+    t.integer  "restaurants"
+    t.float    "price",       limit: 24
+    t.integer  "tables"
+    t.integer  "menu_items"
+    t.integer  "storage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,6 +80,7 @@ ActiveRecord::Schema.define(version: 20141005233301) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "organization_name"
+    t.integer  "plan_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

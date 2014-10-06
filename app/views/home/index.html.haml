@@ -1,0 +1,22 @@
+.row
+  - @plans.each do |plan|
+    .col-sm-4
+      .list-group
+        %a.list-group-item.active{:href => "#"}
+          = plan.name
+          \- #{number_to_currency(plan.price)} / Month
+        %a.list-group-item{:href => "#"}
+          = plan.restaurants
+          Restaurant
+        %a.list-group-item{:href => "#"}
+          = plan.tables
+          tables / Restaurant
+        %a.list-group-item{:href => "#"}
+          = plan.menu_items
+          Menu Items / Restaurant
+        %a.list-group-item{:href => "#"}
+          = plan.storage
+          GB storage
+        = link_to new_user_registration_path(:plan_id => plan.id), :class=>"list-group-item" do
+          %button.btn.btn-success Sign Up
+    / /.col-sm-4

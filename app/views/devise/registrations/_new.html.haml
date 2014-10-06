@@ -1,0 +1,21 @@
+%h2 Setup a user - Step 1
+= form_for("user", :url => user_session_path) do |f|
+  = devise_error_messages!
+  .form-group
+    = f.label :name
+    %br/
+    = f.text_field :name, :autofocus => true, :class=>"form-control", :placeholder => "User Name"
+  .form-group
+    = f.label :email
+    %br/
+    = f.email_field :email, :autofocus => true, :class=>"form-control", :placeholder => "Email"
+  .form-group
+    = f.label :password
+    %br/
+    = f.password_field :password, :class=>"form-control", :placeholder => "Password"
+  .form-group
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, :class=>"form-control", :placeholder => "Password Confirmation"
+  %div= f.submit "Sign up", :class=>"btn btn-default"
+/ <haml_loud> render "devise/shared/links" </haml_loud>
