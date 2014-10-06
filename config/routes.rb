@@ -1,19 +1,29 @@
 Rails.application.routes.draw do
+  mount StripeEvent::Engine => '/stripe'
 
-  get 'home/index'
+  resources :organizations
 
   resources :menus
-
-  resources :restaurants
+  resources :setup_organization
+  resources :restaurants do
+    collection do
+      get 'export_menus'
+    end
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+    authenticated do
+      get '/' => 'dashboard#show', :constraints => Subdomain, :as => 'dashboard'
+    end
 
-  resources :setup_organization
+   
+  get 'home/index', :as => 'home'
+  
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -49,7 +59,7 @@ Rails.application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-
+  
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

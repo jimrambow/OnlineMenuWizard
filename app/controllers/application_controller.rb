@@ -1,5 +1,19 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  include Concerns::Url
+  before_filter :enable_tenant
   protect_from_forgery with: :exception
+
+  def enable_tenant
+    @current_tenant || = Tenant.new(current_user.organization)
+  end
+  
+  def after_sign_out_path_for(resource)
+   home_path
+  end
+
+
+  def enable_tenant
+    @tenant = Tenant.new(current_user)
+  end
+
 end

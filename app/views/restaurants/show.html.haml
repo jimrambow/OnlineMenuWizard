@@ -1,15 +1,22 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %strong Name:
   = @restaurant.name
-%p
-  %b Description:
-  = @restaurant.description
-%p
-  %b Slug:
-  = @restaurant.slug
 
-= link_to 'Edit', edit_restaurant_path(@restaurant)
-\|
-= link_to 'Back', restaurants_path
+%p
+  %strong Description:
+  = @restaurant.description
+
+%h3 Menus
+- @menus.each do |m|
+
+  = link_to m.title, menu_path(m)
+
+  = link_to "Export to CSV", export_menus_restaurants_path(format: "csv", :restaurant_id => @restaurant.id), :class=>"btn btn-default"
+
+= link_to "Add a Menu", new_menu_path(:restaurant_id => @restaurant.id), :class=>"btn btn-default"
+
+= link_to 'Edit', edit_restaurant_path(@restaurant), :class=>"btn btn-default"
+
+= link_to 'Back', restaurants_path, :class=>"btn btn-default"

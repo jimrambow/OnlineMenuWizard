@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
   def show
     @menus = Menu.where(:restaurant_id => @restaurant.id)
   end
-
+  require 'csv'
   def export_menus
     @menus = Menu.where(:restaurant_id => params[:restaurant_id])
     respond_to do |format|
@@ -73,8 +73,7 @@ class RestaurantsController < ApplicationController
     end
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :description, :organization_id,
-                                         :users_attributes => [:id, :name, :email, :password, :password_confirmation, :remember_me]
+      params.require(:restaurant).permit(:name, :description, :organization_id, :users_attributes => [:id, :name, :email, :password, :password_confirmation, :remember_me]
 )
     end
 end
