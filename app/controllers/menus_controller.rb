@@ -1,3 +1,5 @@
+require 'csv'
+
 class MenusController < ApplicationController
  before_action :set_menu, only: [:show, :edit, :update, :destroy]
 

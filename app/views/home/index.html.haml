@@ -1,3 +1,36 @@
+/
+  Carousel
+  \==================================================
+#myCarousel.carousel.slide
+  / Indicators
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+  .carousel-inner
+    .item.active
+      = image_tag "https://farm3.staticflickr.com/2402/2407509566_d82c8cc536_o.jpg"
+      .container
+        .carousel-caption
+          %p Build and Manage Menus With Ease
+          %h5
+            Image Source :
+            %a{:href => "https://secure.flickr.com/photos/joshua/", :target => "blank"} Joshua Rappeneker
+          %p
+            %a.btn.btn-large.btn-primary{:href => "#"} Sign up today
+    .item
+      = image_tag "https://farm4.staticflickr.com/3643/3492719750_aec3c68e0c_o.jpg"
+      .container
+        .carousel-caption
+          %p Build and Manage Menus With Ease
+          %h5
+            Image Source :
+            %a{:href => "https://secure.flickr.com/photos/orangetaki/", :target => "blank"} Taki Lau
+          %p
+            %a.btn.btn-large.btn-primary{:href => "#"} Sign up today
+/ /.carousel
+.page-header
+  %h2 Plans
 .row
   - @plans.each do |plan|
     .col-sm-4
@@ -17,6 +50,6 @@
         %a.list-group-item{:href => "#"}
           = plan.storage
           GB storage
-        = link_to new_user_registration_path(:plan_id => plan.id), :class=>"list-group-item" do
+        = link_to new_user_registration_path(:plan_id => plan.id),  :class=>"list-group-item" do
           %button.btn.btn-success Sign Up
     / /.col-sm-4

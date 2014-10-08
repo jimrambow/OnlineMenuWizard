@@ -1,1 +1,5 @@
-Testing what I can do with Wicked Wizard.
+== OnlineMenuWizard
+
+Final project is going to be a restaurant app that will allow users to create an organization such as our local Maverick Southern Kitchens organization and then create restaurants inside these organizations. After that they can make menus and add Items to the menu in real time as updating the restuarant. After you have your menu created you can print out the menu in a CSV file.
+
+In the long term I'd like to fully implement using a credit card for payment. I have the code in there, just not ready to be used.

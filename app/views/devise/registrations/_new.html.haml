@@ -18,4 +18,4 @@
     %br/
     = f.password_field :password_confirmation, :class=>"form-control", :placeholder => "Password Confirmation"
   %div= f.submit "Sign up", :class=>"btn btn-default"
-/ <haml_loud> render "devise/shared/links" </haml_loud>
+= render "devise/shared/links"

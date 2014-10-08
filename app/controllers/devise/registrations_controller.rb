@@ -3,11 +3,13 @@ class Devise::RegistrationsController < DeviseController
   prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy]
   before_filter :update_sanitized_params, if: :devise_controller?
 
+  # GET /resource/sign_up
   def new
     build_resource({})
     respond_with self.resource
   end
 
+  # POST /resource
   def create
     build_resource(sign_up_params)
 
@@ -27,10 +29,14 @@ class Devise::RegistrationsController < DeviseController
     end
   end
 
+  # GET /resource/edit
   def edit
     render :edit
   end
 
+  # PUT /resource
+  # We need to use a copy of the resource because we don't want to change
+  # the current user in place.
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
@@ -49,6 +55,7 @@ class Devise::RegistrationsController < DeviseController
     end
   end
 
+  # DELETE /resource
   def destroy
     resource.destroy
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
@@ -56,6 +63,11 @@ class Devise::RegistrationsController < DeviseController
     respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
   end
 
+  # GET /resource/cancel
+  # Forces the session data which is usually expired after sign
+  # in to be expired now. This is useful if the user wants to
+  # cancel oauth signing in/up in the middle of the process,
+  # removing all OAuth session data.
   def cancel
     expire_session_data_after_sign_in!
     redirect_to new_registration_path(resource_name)

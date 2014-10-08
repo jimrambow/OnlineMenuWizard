@@ -1,23 +1,14 @@
-%h1 Listing restaurants
-
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Slug
-    %th
-    %th
-    %th
-
-  - @restaurants.each do |restaurant|
-    %tr
-      %td= restaurant.name
-      %td= restaurant.description
-      %td= restaurant.slug
-      %td= link_to 'Show', restaurant
-      %td= link_to 'Edit', edit_restaurant_path(restaurant)
-      %td= link_to 'Destroy', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Restaurant', new_restaurant_path
+%h2
+  = @organization
+  %tbody
+    - @restaurants.each do |restaurant|
+      %tr
+        %td= restaurant.name
+        %td= restaurant.description
+        %td= link_to 'Show', restaurant, :class=>"btn btn-default"
+        - if current_user.has_role? "owner"
+          %td= link_to 'Edit', edit_restaurant_path(restaurant), :class=>"btn btn-default"
+          %td= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-default"
+  %br/
+  %br/
+  = link_to 'Add A Restaurant', new_restaurant_path, :class=>"btn btn-default"

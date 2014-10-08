@@ -1,5 +1,5 @@
 class Restaurant < ActiveRecord::Base
-include Concerns::Access
+  include Concerns::Access
 
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -9,8 +9,4 @@ include Concerns::Access
   resourcify
   
   validates :name, presence: true
-end
-
-
-  
 end

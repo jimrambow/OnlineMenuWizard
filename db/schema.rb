@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006145825) do
+ActiveRecord::Schema.define(version: 20141008094127) do
 
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.float    "price",       limit: 24
+    t.integer  "menu_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "items", ["menu_id"], name: "index_items_on_menu_id", using: :btree
 
   create_table "menus", force: true do |t|
     t.string   "title"
@@ -50,6 +53,7 @@ ActiveRecord::Schema.define(version: 20141006145825) do
     t.string   "name"
     t.text     "description"
     t.string   "slug"
+    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
