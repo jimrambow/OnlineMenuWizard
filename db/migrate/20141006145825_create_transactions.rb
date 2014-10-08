@@ -8,6 +8,9 @@ class CreateTransactions < ActiveRecord::Migration
       t.integer :month
       t.integer :year
       t.boolean :status
+      t.decimal :amount, precision: 10, scale: 0
+      t.string :first_name
+      t.string :last_name
 
       t.timestamps
     end
