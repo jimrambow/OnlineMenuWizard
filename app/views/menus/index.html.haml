@@ -5,10 +5,14 @@
         %h2= menu.title
       %td= menu.description
       %br/
-      %td= link_to 'Show', menu, :class=>"btn btn-default"
+      %td= link_to 'Show', menu, :class=>"btn btn-primary"
+      %td= link_to "Export to CSV", menus_path(format: "csv"), :class=>"btn btn-warning"
       - if current_user.has_role? "owner"
         %td= link_to 'Edit', edit_menu_path(menu)
         %td= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' }
+
 %br/
-= link_to 'New Menu', new_menu_path, :class=>"btn btn-default"
-= link_to "Export to CSV", menus_path(format: "csv"), :class=>"btn btn-default"
+%br/
+%br/
+= link_to 'New Menu', new_menu_path, :class=>"btn btn-success"
+
