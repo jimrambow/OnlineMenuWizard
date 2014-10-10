@@ -3,12 +3,17 @@
   %strong Title:
   = @menu.title
 %p
+  %br/
   %strong Description:
   = @menu.description
+%br/ 
+  
 - @menu.items.each do |i|
-  = i.name
-  |
+  %strong= i.name
+  %br/
   = i.description
+  %br/
+  %br/
 = link_to 'Edit', edit_menu_path(@menu)
 |
 \#{link_to 'Back', menus_path}

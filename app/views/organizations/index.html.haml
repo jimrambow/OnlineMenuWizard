@@ -3,8 +3,11 @@
   %thead
     %tr
       %th Name
+      %br/
       %th Description
+      %br/
       %th Owner
+      %br/
       %th
       %th
       %th
@@ -12,7 +15,9 @@
     - @organizations.each do |organization|
       %tr
         %td= organization.name
+        %br/
         %td= organization.description
+        %br/
         %td= link_to 'Show', organization
         %td= link_to 'Edit', edit_organization_path(organization)
         %td= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' }

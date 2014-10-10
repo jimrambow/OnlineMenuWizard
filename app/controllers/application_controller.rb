@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Concerns::Url
 
   before_filter :enable_tenant
+  before_action :update_sanitized_params, if: :devise_controller?
  
   
   protect_from_forgery 
@@ -27,22 +28,22 @@ class ApplicationController < ActionController::Base
     sign_in(resource_name, resource)
   end
 
-  private
-
   def after_sign_up_path_for(resource)
-    users_path(resource)
+    p '^'*100
+    session[:plan_id] = params[:plan_id]
+    setup_organization_path(:organization_setup)
   end
 
   def enable_tenant
     @tenant = Tenant.new(current_user)
   end
 
-  def after_inactive_sign_up_path_for(resource)
-    scope = Devise::Mapping.find_scope!(resource)
-    router_name = Devise.mappings[scope].router_name
-    context = router_name ? send(router_name) : self
-    context.respond_to?(:root_path) ? context.root_path : "/"
-  end
+  # def after_inactive_sign_up_path_for(resource)
+  #   scope = Devise::Mapping.find_scope!(resource)
+  #   router_name = Devise.mappings[scope].router_name
+  #   context = router_name ? send(router_name) : self
+  #   context.respond_to?(:root_path) ? context.root_path : "/"
+  # end
 
   def after_update_path_for(resource)
     signed_in_root_path(resource)
@@ -61,16 +62,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.sanitize(:account_update)
   end
 
-  def after_sign_out_path_for(resource)
-   home_path
-  end
+  # def after_sign_out_path_for(resource)
+  #  home_path
+  # end
+
+  private
 
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :organization_name, :email, :password, :password_confirmation, :plan_id)}
-    # @plan_name = Plan.where(:id=> params[:plan_id]).pluck(:name)
+    @plan_name = Plan.where(:id=> params[:plan_id]).pluck(:name)
   end
 
-  def after_sign_in_path_for(resource)
-    users_path(resource)
-  end
+  # def after_sign_in_path_for(resource)
+  #   user_path(resource)
+  # end
 end

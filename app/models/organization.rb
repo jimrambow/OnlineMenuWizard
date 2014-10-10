@@ -1,11 +1,12 @@
 class Organization < ActiveRecord::Base
 #   include Concerns::Access
-  has_many :users
   has_one :plan
   resourcify
   
   has_and_belongs_to_many :users
-  
+
+
+  # organizations_users
   validates :name, presence: true
 
   def self.free_trial

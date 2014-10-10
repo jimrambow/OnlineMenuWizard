@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   include Concerns::Access
 
   def index
-    @organization = current_user.organizations.first.name
+    @organization = current_user.organizations
     if params[:id].present?
       @restaurants = @tenant.restaurants.find(params[:id])
     else
@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
-    @organization = current_user.organizations.first.id
+    @organization = current_user.organizations
   end
 
   def edit
@@ -33,7 +33,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.organization_id = current_user.organizations.first.id
+    @restaurant.organization_id = current_user.organizations
 
     respond_to do |format|
       if @restaurant.save
@@ -69,7 +69,7 @@ class RestaurantsController < ApplicationController
   private
 
     def set_restaurant
-      @restaurant = Restaurant.friendly.find(params[:id])
+      @restaurant = Restaurant.find(params[:id])
     end
 
     def restaurant_params

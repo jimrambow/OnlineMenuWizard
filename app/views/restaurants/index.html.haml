@@ -1,11 +1,14 @@
 %h2
-  = @organization
+  = @organization.name
   %tbody
     - @restaurants.each do |restaurant|
       %tr
         %td= restaurant.name
+        %br/
         %td= restaurant.description
+        %br/
         %td= link_to 'Show', restaurant, :class=>"btn btn-default"
+        %br/
         - if current_user.has_role? "owner"
           %td= link_to 'Edit', edit_restaurant_path(restaurant), :class=>"btn btn-default"
           %td= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-default"

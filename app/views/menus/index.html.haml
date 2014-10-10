@@ -4,6 +4,7 @@
       %td
         %h2= menu.title
       %td= menu.description
+      %br/
       %td= link_to 'Show', menu, :class=>"btn btn-default"
       - if current_user.has_role? "owner"
         %td= link_to 'Edit', edit_menu_path(menu)
