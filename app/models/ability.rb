@@ -6,9 +6,9 @@ class Ability
        if user.has_role? :admin
          can :manage, :all
        else
-        can :read, Organization
-        can :manage, Organization if user.has_role?(:owner, Organization)
-        can :write, Organization, :id => Organization.with_role(:manager, user).map(&:id)
+         can :read, Organization
+         can :manage, Organization if user.has_role?(:owner, Organization)
+         can :write, Organization, :id => Organization.with_role(:manager, user).map(&:id)
        end
   end
 end

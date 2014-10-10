@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20141006145825) do
   end
 
   create_table "plans", force: true do |t|
-    t.integer  "name"
+    t.string   "name"
     t.integer  "restaurants"
     t.float    "price",       limit: 24
     t.integer  "tables"
@@ -97,14 +97,6 @@ ActiveRecord::Schema.define(version: 20141006145825) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "card_type"
-    t.integer  "credit_card"
-    t.integer  "cvv"
-    t.integer  "month"
-    t.integer  "year"
-    t.boolean  "active"
-    t.string   "first_name"
-    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"

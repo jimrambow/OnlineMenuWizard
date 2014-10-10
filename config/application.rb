@@ -10,7 +10,7 @@ module OnlineMenuWizard
   class Application < Rails::Application
     
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
     
-    config.active_record.whitelist_attributes = true
   end
 end

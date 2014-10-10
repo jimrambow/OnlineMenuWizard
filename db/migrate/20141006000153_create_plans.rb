@@ -1,7 +1,7 @@
 class CreatePlans < ActiveRecord::Migration
   def change
     create_table :plans do |t|
-      t.integer :name
+      t.string :name
       t.integer :restaurants
       t.float :price
       t.integer :tables
